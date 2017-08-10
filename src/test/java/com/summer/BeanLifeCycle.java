@@ -5,8 +5,11 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.web.portlet.context.XmlPortletApplicationContext;
 
 /**
  * Created by p2p on 2017/8/9.
@@ -36,9 +39,17 @@ public class BeanLifeCycle {
         ((DefaultListableBeanFactory)bf).destroySingletons();
 
     }
+    private static void applicationContextText(){
+        ApplicationContext act1 = new ClassPathXmlApplicationContext("beanfactory/beans1.xml");
+        Car car = (Car)act1.getBean("car");
+        car.introduce();
+
+    }
+
 
     public static void main(String[] args){
-        LifeCycleInBeanFactory();
+        //LifeCycleInBeanFactory();
+        applicationContextText();
     }
 
 }
